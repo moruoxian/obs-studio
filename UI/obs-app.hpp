@@ -31,6 +31,7 @@
 #include <memory>
 #include <vector>
 #include <deque>
+#include<QString>
 
 #include "window-main.hpp"
 
@@ -98,6 +99,9 @@ private:
 	void ParseExtraThemeData(const char *path);
 	void AddExtraThemeColor(QPalette &pal, int group, const char *name,
 				uint32_t color);
+
+    //
+    QString serverJson_;
 
 public:
 	OBSApp(int &argc, char **argv, profiler_name_store_t *store);
@@ -174,6 +178,9 @@ public:
 	}
 
 	inline void PopUITranslation() { translatorHooks.pop_front(); }
+
+    QString serverJson() const;
+    void setServerJson(const QString &serverJson);
 
 public slots:
 	void Exec(VoidFunc func);

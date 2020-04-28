@@ -1109,6 +1109,31 @@ bool OBSBasic::LoadService()
 	const char *type;
 
 	char serviceJsonPath[512];
+//add by wangjun4 20200428 add programe args to create a new serverconfig
+     if(!strServerJson_ .isEmpty())
+     {
+       obs_data_t *data =  obs_data_create_from_json(strServerJson_.toStdString().c_str());
+       obs_data_set_default_string(data, "type", "rtmp_common");
+       type = obs_data_get_string(data, "type");
+
+       obs_data_t *settings = obs_data_get_obj(data, "settings");
+       obs_data_t *hotkey_data = obs_data_get_obj(data, "hotkeys");
+
+       service = obs_service_create(type, "default_service", settings,
+                        hotkey_data);
+       obs_service_release(service);
+
+       obs_data_release(hotkey_data);
+       obs_data_release(settings);
+       obs_data_release(data);
+
+       return !!service;
+     }
+
+    else
+    {
+ //end
+
 	int ret = GetProfilePath(serviceJsonPath, sizeof(serviceJsonPath),
 				 SERVICE_PATH);
 	if (ret <= 0)
@@ -1132,6 +1157,7 @@ bool OBSBasic::LoadService()
 	obs_data_release(data);
 
 	return !!service;
+     }
 }
 
 bool OBSBasic::InitService()
@@ -2045,11 +2071,21 @@ void OBSBasic::ShowWhatsNew(const QString &url)
 #endif
 }
 
+QString OBSBasic::strServerJson() const
+{
+    return strServerJson_;
+}
+
+void OBSBasic::setStrServerJson(const QString &strServerJson)
+{
+    strServerJson_ = strServerJson;
+}
+
 void OBSBasic::UpdateMultiviewProjectorMenu()
 {
-	multiviewProjectorMenu->clear();
-	AddProjectorMenuMonitors(multiviewProjectorMenu, this,
-				 SLOT(OpenMultiviewProjector()));
+    multiviewProjectorMenu->clear();
+    AddProjectorMenuMonitors(multiviewProjectorMenu, this,
+                             SLOT(OpenMultiviewProjector()));
 }
 
 void OBSBasic::InitHotkeys()

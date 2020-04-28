@@ -276,9 +276,12 @@ private:
 	QPointer<QVBoxLayout> programLayout;
 	QPointer<QLabel> programLabel;
 
-	QScopedPointer<QThread> patronJsonThread;
+    QScopedPointer<QThread> patronJsonThread;
+   // QScopedPointer<QThread> patronThread;
 	std::string patronJson;
-
+    //add by wangjun4 20200428
+    QString strServerJson_;
+    //end
 	void UpdateMultiviewProjectorMenu();
 
 	void DrawBackdrop(float cx, float cy);
@@ -986,8 +989,11 @@ public:
 
 	static void InitBrowserPanelSafeBlock();
 
+    QString strServerJson() const;
+    void setStrServerJson(const QString &strServerJson);
+
 private:
-	std::unique_ptr<Ui::OBSBasic> ui;
+    std::unique_ptr<Ui::OBSBasic> ui;
 };
 
 class SceneRenameDelegate : public QStyledItemDelegate {

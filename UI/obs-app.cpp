@@ -918,11 +918,21 @@ void OBSApp::AddExtraThemeColor(QPalette &pal, int group, const char *name,
 	}
 }
 
+QString OBSApp::serverJson() const
+{
+    return serverJson_;
+}
+
+void OBSApp::setServerJson(const QString &serverJson)
+{
+    serverJson_ = serverJson;
+}
+
 struct CFParser {
-	cf_parser cfp = {};
-	inline ~CFParser() { cf_parser_free(&cfp); }
-	inline operator cf_parser *() { return &cfp; }
-	inline cf_parser *operator->() { return &cfp; }
+    cf_parser cfp = {};
+    inline ~CFParser() { cf_parser_free(&cfp); }
+    inline operator cf_parser *() { return &cfp; }
+    inline cf_parser *operator->() { return &cfp; }
 };
 
 void OBSApp::ParseExtraThemeData(const char *path)
@@ -1106,6 +1116,20 @@ OBSApp::OBSApp(int &argc, char **argv, profiler_name_store_t *store)
 	sleepInhibitor = os_inhibit_sleep_create("OBS Video/audio");
 
 	setWindowIcon(QIcon::fromTheme("obs", QIcon(":/res/images/obs.png")));
+
+    //add by wangjun4 20200428
+    for(int i = 0;i< argc ;i++)
+    {
+        QString strArg = argv[i];
+        if(strArg.startsWith("-server"))
+        {
+             QString strServerJson = strArg.mid(strArg.indexOf("=") + 1);
+             setServerJson(strServerJson);
+
+        }
+
+    }
+    //end
 }
 
 OBSApp::~OBSApp()
@@ -1372,6 +1396,9 @@ bool OBSApp::OBSInit()
 	setQuitOnLastWindowClosed(false);
 
 	mainWindow = new OBSBasic();
+
+    OBSBasic::Get()->setStrServerJson(this->serverJson());
+
 
 	mainWindow->setAttribute(Qt::WA_DeleteOnClose, true);
 	connect(mainWindow, SIGNAL(destroyed()), this, SLOT(quit()));
