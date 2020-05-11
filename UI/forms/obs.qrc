@@ -34,28 +34,28 @@
         <file>images/sources/text.svg</file>
         <file>images/sources/window.svg</file>
         <file>images/sources/default.svg</file>
-        <file alias="SettingCfg">images/FucBtn/config.png</file>
-        <file alias="SettingCfgHS">images/FucBtn/configOver.png</file>
-        <file alias="SrcMonitorWindow">images/FucBtn/monitor_window.png</file>
-        <file alias="SrcMonitorWindowHS">images/FucBtn/monitor_windowOver.png</file>
+        <file>images/FucBtn/config.png</file>
+        <file>images/FucBtn/configOver.png</file>
+        <file>images/FucBtn/monitor_window.png</file>
+        <file>images/FucBtn/monitor_windowOver.png</file>
         <file>images/FucBtn/source_hide.png</file>
         <file>images/FucBtn/source_show.png</file>
-        <file alias="SrcCam">images/FucBtn/sourceCamera.png</file>
-        <file alias="SrcCamHS">images/FucBtn/sourceCameraOver.png</file>
-        <file alias="SrcGame">images/FucBtn/sourceGame.png</file>
-        <file alias="SrcGameHS">images/FucBtn/sourceGameOver.png</file>
+        <file>images/FucBtn/sourceCamera.png</file>
+        <file>images/FucBtn/sourceCameraOver.png</file>
+        <file>images/FucBtn/sourceGame.png</file>
+        <file>images/FucBtn/sourceGameOver.png</file>
         <file>images/FucBtn/sourceMonitor.png</file>
         <file>images/FucBtn/sourceMonitorOver.png</file>
-        <file alias="SrcPic">images/FucBtn/sourcePicture.png</file>
-        <file alias="SrcPicHS">images/FucBtn/sourcePictureOver.png</file>
-        <file alias="SrcTxt">images/FucBtn/sourceText.png</file>
-        <file alias="SrcTxtHS">images/FucBtn/sourceTextOver.png</file>
-        <file alias="SrcVideo">images/FucBtn/sourceVideo.png</file>
-        <file alias="SrcVideoHS">images/FucBtn/sourceVideoOver.png</file>
-        <file alias="Valume">images/FucBtn/volume.png</file>
-        <file alias="ValumeHS">images/FucBtn/volumeOver.png</file>
-        <file alias="DanmakuHS">images/FucBtn/danmakuOver.png</file>
-        <file alias="Danmaku">images/FucBtn/danmaku.png</file>
+        <file>images/FucBtn/sourcePicture.png</file>
+        <file>images/FucBtn/sourcePictureOver.png</file>
+        <file>images/FucBtn/sourceText.png</file>
+        <file>images/FucBtn/sourceTextOver.png</file>
+        <file>images/FucBtn/sourceVideo.png</file>
+        <file>images/FucBtn/sourceVideoOver.png</file>
+        <file>images/FucBtn/volume.png</file>
+        <file>images/FucBtn/volumeOver.png</file>
+        <file>images/FucBtn/danmakuOver.png</file>
+        <file>images/FucBtn/danmaku.png</file>
     </qresource>
     <qresource prefix="/settings">
         <file>images/settings/output.svg</file>

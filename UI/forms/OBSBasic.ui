@@ -2611,7 +2611,7 @@
            <x>0</x>
            <y>0</y>
            <width>16</width>
-           <height>28</height>
+           <height>16</height>
           </rect>
          </property>
          <property name="sizePolicy">

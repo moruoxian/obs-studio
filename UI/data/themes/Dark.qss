@@ -838,70 +838,70 @@ QSlider::handle:horizontal[themeID="tBarSlider"] {
 /*///////////////// biliButtonqss begin /////////////*/
 QPushButton#SrcCamBtn{
     border-style: outset;
-	image: url(:/res/SrcCam);
+	image: url(:/res/images/FucBtn/sourceCamera.png);
 }
 QPushButton#SrcCamBtn:hover{
-	image: url(:/res/SrcCamHS);
+	image: url(:/res/images/FucBtn/sourceCameraOver.png);
 }
 
 QPushButton#SrcGameBtn{
     border-style: outset;
-	image: url(:/res/SrcGame);
+	image: url(:/res/images/FucBtn/sourceGame.png);
 }
 QPushButton#SrcGameBtn:hover{
-	image: url(:/res/SrcGameHS);
+	image: url(:/res/images/FucBtn/sourceGameOver.png);
 }
 QPushButton#SrcWinAndMonitorBtn{
     border-style: outset;
-	image: url(:/res/SrcMonitorWindow);
+	image: url(:/res/images/FucBtn/monitor_window.png);
 }
 QPushButton#SrcWinAndMonitorBtn:hover{
-	image: url(:/res/SrcMonitorWindowHS);
+	image: url(:/res/images/FucBtn/monitor_windowOver.png);
 }
 QPushButton#SrcVideoBtn{
     border-style: outset;
-	image: url(:/res/SrcVideo);
+	image: url(:/res/images/FucBtn/sourceVideo.png);
 }
 QPushButton#SrcVideoBtn:hover{
-	image: url(:/res/SrcVideoHS);
+	image: url(:/res/images/FucBtn/sourceVideoOver.png);
 }
 QPushButton#SrcTxtBtn{
     border-style: outset;
-	image: url(:/res/SrcTxt);
+	image: url(:/res/images/FucBtn/sourceText.png);
 }
 QPushButton#SrcTxtBtn:hover{
-	image: url(:/res/SrcTxtHS);
+	image: url(:/res/images/FucBtn/sourceTextOver.png);
 }
 QPushButton#SrcPicBtn{
     border-style: outset;
-	image: url(:/res/SrcPic);
+	image: url(:/res/images/FucBtn/sourcePicture.png);
 }
 QPushButton#SrcPicBtn:hover{
-	image: url(:/res/SrcPicHS);
+	image: url(:/res/images/FucBtn/sourcePictureOver.png);
 }
 QPushButton#DanmakuBtn{
     border-style: outset;
-	image: url(:/res/Danmaku);
+	image: url(:/res/images/FucBtn/danmaku.png);
 }
 QPushButton#DanmakuBtn:hover{
-	image: url(:/res/DanmakuHS);
+	image: url(:/res/images/FucBtn/danmakuOver.png);
 }
 
 QPushButton#ValumeSettingBtn{
     border-style: outset;
-	image: url(:/res/Valume);
+	image: url(:/res/images/FucBtn/volume.png);
 }
 QPushButton#ValumeSettingBtn:hover{
-	image: url(:/res/ValumeHS);
+	image: url(:/res/images/FucBtn/volumeOver.png);
 }
 QPushButton#SettingBtn{
     border-style: outset;
 	
-	image: url(:/res/SettingCfg);
+	image: url(:/res/images/FucBtn/config.png);
 }
 QPushButton#SettingBtn:hover{
 	
-	image: url(:/res/SettingCfgHS);
+	image: url(:/res/images/FucBtn/configOver.png);
 }
 
 /*///////////////// biliButtonqss end /////////////*/
