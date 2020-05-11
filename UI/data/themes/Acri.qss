@@ -1098,3 +1098,74 @@ QSlider::handle:horizontal[themeID="tBarSlider"] {
 	height: 28px;
 	margin: -28px 0px;
 }
+
+/*///////////////// biliButtonqss begin /////////////*/
+QPushButton#SrcCamBtn{
+    border-style: outset;
+	image: url(:/res/SrcCam);
+}
+QPushButton#SrcCamBtn:hover{
+	image: url(:/res/SrcCamHS);
+}
+
+QPushButton#SrcGameBtn{
+    border-style: outset;
+	image: url(:/res/SrcGame);
+}
+QPushButton#SrcGameBtn:hover{
+	image: url(:/res/SrcGameHS);
+}
+QPushButton#SrcWinAndMonitorBtn{
+    border-style: outset;
+	image: url(:/res/SrcMonitorWindow);
+}
+QPushButton#SrcWinAndMonitorBtn:hover{
+	image: url(:/res/SrcMonitorWindowHS);
+}
+QPushButton#SrcVideoBtn{
+    border-style: outset;
+	image: url(:/res/SrcVideo);
+}
+QPushButton#SrcVideoBtn:hover{
+	image: url(:/res/SrcVideoHS);
+}
+QPushButton#SrcTxtBtn{
+    border-style: outset;
+	image: url(:/res/SrcTxt);
+}
+QPushButton#SrcTxtBtn:hover{
+	image: url(:/res/SrcTxtHS);
+}
+QPushButton#SrcPicBtn{
+    border-style: outset;
+	image: url(:/res/SrcPic);
+}
+QPushButton#SrcPicBtn:hover{
+	image: url(:/res/SrcPicHS);
+}
+QPushButton#DanmakuBtn{
+    border-style: outset;
+	image: url(:/res/Danmaku);
+}
+QPushButton#DanmakuBtn:hover{
+	image: url(:/res/DanmakuHS);
+}
+
+QPushButton#ValumeSettingBtn{
+    border-style: outset;
+	image: url(:/res/Valume);
+}
+QPushButton#ValumeSettingBtn:hover{
+	image: url(:/res/ValumeHS);
+}
+QPushButton#SettingBtn{
+    border-style: outset;
+	
+	image: url(:/res/SettingCfg);
+}
+QPushButton#SettingBtn:hover{
+	
+	image: url(:/res/SettingCfgHS);
+}
+
+/*///////////////// biliButtonqss end /////////////*/

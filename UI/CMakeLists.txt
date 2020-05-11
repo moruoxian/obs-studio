@@ -262,7 +262,9 @@ set(obs_SOURCES
 	source-label.cpp
 	remote-text.cpp
 	audio-encoders.cpp
-	qt-wrappers.cpp)
+        qt-wrappers.cpp)
+#        BiLiOBSMainWid.cpp
+#        RightListToolbar.cpp)
 
 set(obs_HEADERS
 	${obs_PLATFORM_HEADERS}
@@ -325,7 +327,10 @@ set(obs_HEADERS
 	remote-text.hpp
 	audio-encoders.hpp
 	qt-wrappers.hpp
-	clickable-label.hpp)
+        clickable-label.hpp )
+#        BiLiOBSMainWid.h
+#        RightListToolbar.h
+#        )
 
 set(obs_importers_HEADERS
 	importers/importers.hpp)
@@ -358,10 +363,12 @@ set(obs_UI
 	forms/OBSUpdate.ui
 	forms/OBSRemux.ui
 	forms/OBSImporter.ui
-	forms/OBSAbout.ui)
+        forms/OBSAbout.ui)
+#        forms/BiLiOBSMainWid.ui
+#       )
 
 set(obs_QRC
-	forms/obs.qrc)
+        forms/obs.qrc)
 
 qt5_wrap_ui(obs_UI_HEADERS ${obs_UI})
 qt5_add_resources(obs_QRC_SOURCES ${obs_QRC})

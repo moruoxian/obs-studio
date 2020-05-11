@@ -42,6 +42,11 @@
 #include <util/util.hpp>
 
 #include <QPointer>
+//add  by wangjun4 test
+
+
+//
+
 
 class QMessageBox;
 class QListWidgetItem;
@@ -470,6 +475,11 @@ private:
 	void ReceivedIntroJson(const QString &text);
 	void ShowWhatsNew(const QString &url);
 
+
+    //add by wangjun4 20200509
+    QList<QPushButton *> mFuncBtnList;
+    QMenu* monitorAndWinMenu_;
+    //end
 #ifdef BROWSER_AVAILABLE
 	QList<QSharedPointer<QDockWidget>> extraBrowserDocks;
 	QList<QSharedPointer<QAction>> extraBrowserDockActions;
@@ -668,6 +678,11 @@ private slots:
 	void TBarReleased();
 
 	void LockVolumeControl(bool lock);
+
+    //add 20200509
+    void mSltAddSourceButtonClicked();
+    void OnWinAndMonitorSourceButtonClicked();
+    //end
 
 private:
 	/* OBS Callbacks */

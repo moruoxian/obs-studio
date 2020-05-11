@@ -66,7 +66,7 @@
 
 #include "ui_OBSBasic.h"
 #include "ui_ColorSelect.h"
-
+//#include "ui_BiLiOBSMainWid.h"
 #include <fstream>
 #include <sstream>
 
@@ -74,7 +74,8 @@
 #include <QWindow>
 
 #include <json11.hpp>
-
+//#include<BiLiOBSMainWid.h>
+#include<QPoint>
 using namespace json11;
 using namespace std;
 
@@ -195,7 +196,28 @@ OBSBasic::OBSBasic(QWidget *parent)
 		"SignalContainer<OBSScene>");
 
 	setAttribute(Qt::WA_NativeWindow);
+    //test
+//    QWidget * biliwidget = new QWidget();
+//    biliwidget-> setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinimizeButtonHint);
+//    Ui::BiLiOBSMainWid *biliui = new Ui::BiLiOBSMainWid ;
+//    biliui->setupUi(biliwidget);
+//    biliwidget->show();
 
+
+//    BiLiOBSMainWid* biliMainwidget = new  BiLiOBSMainWid() ;
+//    biliMainwidget->show();
+
+//        QFile styleFile(":/QSS/BiLiStyle");
+//            if (styleFile.open(QFile::ReadOnly)) {
+//                qApp->setStyleSheet(styleFile.readAll());
+//               //->setStyleSheet(StyleSheet);
+//                styleFile.close();
+//            }
+//    QTranslator *mTrans = new QTranslator();
+//    mTrans->load(":/Trans/BiLi_zh");
+//    qApp->installTranslator(mTrans);
+
+    //test end
 #if TWITCH_ENABLED
 	RegisterTwitchAuth();
 #endif
@@ -406,6 +428,51 @@ OBSBasic::OBSBasic(QWidget *parent)
 		this,
 		SLOT(ScenesReordered(const QModelIndex &, int, int,
 				     const QModelIndex &, int)));
+
+
+    ui->SrcWinBtn->setHidden(true);
+    ui->SrcWinLab->setHidden(true);
+    ui->SrcMonitorBtn->setHidden(true);
+    ui->SrcMonitorLab->setHidden(true);
+    ui->DelayInfoLab->setHidden(true);
+    ui->DropFramesLab->setHidden(true);
+    ui->KBPSLab->setHidden(true);
+
+    // add at 20200509 add new biliuibutton group
+
+    //添加来源的按钮
+    mFuncBtnList << ui->SrcCamBtn << ui->SrcGameBtn << ui->SrcMonitorBtn
+           << ui->SrcWinBtn << ui->SrcVideoBtn << ui->SrcTxtBtn << ui->SrcPicBtn;
+
+    ui->SrcCamBtn->setProperty("source_id", "av_capture_input");
+    ui->SrcGameBtn->setProperty("source_id", "syphon-input");
+    ui->SrcMonitorBtn->setProperty("source_id", "display_capture");
+    ui->SrcWinBtn->setProperty("source_id", "window_capture");
+    ui->SrcVideoBtn->setProperty("source_id", "ffmpeg_source");
+    ui->SrcTxtBtn->setProperty("source_id", "text_ft2_source");
+    ui->SrcPicBtn->setProperty("source_id", "image_source");
+
+
+    //添加来源的按钮
+        for (int i = 0; i < mFuncBtnList.size(); i++){
+            connect(mFuncBtnList.at(i), SIGNAL(clicked()), this, SLOT(mSltAddSourceButtonClicked()));
+        }
+
+
+        //Monitor And Window Capture
+        monitorAndWinMenu_ = new QMenu;
+        if (monitorAndWinMenu_->objectName().isEmpty())
+            monitorAndWinMenu_->setObjectName("MonitorAndWinMenu");
+        QAction *monitorA = new QAction(tr("Monitor"), this);
+        QAction *windowA = new QAction(tr("Window"), this);
+        monitorAndWinMenu_->addAction(monitorA);
+        monitorAndWinMenu_->addAction(windowA);
+        QObject::connect(monitorA, &QAction::triggered, std::bind(&QPushButton::clicked, ui->SrcMonitorBtn, std::placeholders::_1));
+        QObject::connect(windowA, &QAction::triggered, std::bind(&QPushButton::clicked, ui->SrcWinBtn, std::placeholders::_1));
+    //end
+
+
+
 }
 
 static void SaveAudioDevice(const char *name, int channel, obs_data_t *parent,
@@ -1884,6 +1951,21 @@ void OBSBasic::OBSInit()
 	QMetaObject::invokeMethod(this, "DeferredSysTrayLoad",
 				  Qt::QueuedConnection, Q_ARG(int, 10));
 #endif
+
+
+    //add by wangjun4 20200509
+
+//    auto OnWinAndMonitorSourceButtonClicked = [this]() {
+
+
+//    };
+
+     QObject::connect(ui->SrcWinAndMonitorBtn, &QPushButton::clicked, this,&OBSBasic::OnWinAndMonitorSourceButtonClicked);
+     QObject::connect(ui->ValumeSettingBtn, &QPushButton::clicked, /*this,*/ /*SLOT(mSltValumeSettingBtn())*/[this](){
+      ui->mixerDock->setVisible( !ui->mixerDock->isVisible());
+     }            );
+     QObject::connect(ui->SettingBtn,SIGNAL(clicked()),ui->settingsButton,SIGNAL(clicked()));
+    //end
 }
 
 void OBSBasic::OnFirstLoad()
@@ -2938,7 +3020,158 @@ void OBSBasic::LockVolumeControl(bool lock)
 	obs_data_set_bool(priv_settings, "volume_locked", lock);
 	obs_data_release(priv_settings);
 
-	vol->EnableSlider(!lock);
+    vol->EnableSlider(!lock);
+}
+
+void OBSBasic::mSltAddSourceButtonClicked()
+{
+    QObject* pSender = sender();
+        QString strSourceId = pSender->property("source_id").toString();
+        if (strSourceId.isEmpty())
+        {
+            assert(0);
+            return;
+        }
+
+        struct {
+            const char* sourceId;
+            QString defaultName;
+        } defaultNameTable[] = {
+            "av_capture_input", tr("Camera"),		//摄像头
+            "syphon-input", tr("Game"),			//游戏
+            "display_capture", tr("Monitor"),	//显示器
+            "window_capture", tr("Window"),		//窗口
+            "ffmpeg_source", tr("Media"),		//多媒体
+            "text_ft2_source", tr("Text"),		//文字
+            "image_source", tr("Picture"),		//图片
+        };
+
+        //获取默认名
+        int count = sizeof(defaultNameTable) / sizeof(*defaultNameTable);
+        int i;
+        for (i = 0; i < count; ++i)
+        {
+            if (strSourceId == defaultNameTable[i].sourceId)
+                break;
+        }
+        if (i >= count)
+        {
+            assert(0);
+            return;
+        }
+
+        //获取默认名字
+        QString name(defaultNameTable[i].defaultName);
+        std::list<int> numberList;
+
+
+        AddSource(QT_TO_UTF8(strSourceId));
+        //要匹配的pattern
+//        std::string pattern = name.toStdString() + "%d%c";
+
+//        //遍历所有source获取类似名字的
+//        for (OBSSource& source : OBSEnumSources())
+//        {
+//            const char* sourceName = obs_source_get_name(source);
+//            int num;
+//            char useless[16];
+//            if (sscanf(sourceName, pattern.c_str(), &num, useless) == 1)
+//            {
+//                numberList.push_back(num);
+//            }
+//        }
+
+//        //排序
+//        numberList.sort();
+//        //找数字最小的
+//        int nextNum = 1;
+//        for (int x : numberList)
+//            if (nextNum == x)
+//                ++nextNum;
+//            else
+//                break;
+
+//        //组合名字
+//        name += lexical_cast<std::string>(nextNum).c_str();
+//        obs_source_t* sceneSource = obs_get_output_source(0); //内部会增加source的引用，所以需要释放
+//        if (!sceneSource)
+//            return;
+
+//        obs_scene_t* scene = obs_scene_from_source(sceneSource); //不会添加scene或者sceneSource的引用，所以不需要释放
+//        if (!scene)
+//            return;
+
+//        obs_data_t* presetParam = NULL;
+
+//        //文字来源默认设置
+//        if (strSourceId == "text_ft2_source")
+//        {
+//            presetParam = obs_data_create();
+//            obs_data_set_string(presetParam, "text", "\xe6\x88\x91\xe4\xbb\x8a\xe5\xa4\xa9\xe6\xb2\xa1\xe5\x90\x83\xe8\x8d\xaf\xef\xbc\x8c\xe6\x84\x9f\xe8\xa7\x89\xe8\x87\xaa\xe5\xb7\xb1\xe8\x90\x8c\xe8\x90\x8c\xe5\x93\x92\xe3\x80\x82");
+//            obs_data_t* fontObj = obs_data_create();
+//            obs_data_set_obj(presetParam, "font", fontObj);
+//            obs_data_set_string(fontObj, "face", "Microsoft YaHei");
+//            obs_data_set_int(fontObj, "size", 32);
+//            obs_data_release(fontObj);
+//        }
+
+//        obs_source_t* newSource = obs_source_create(OBS_SOURCE_TYPE_INPUT,
+//            strSourceId.toUtf8(), name.toUtf8(), presetParam, nullptr);
+
+//        if (presetParam)
+//            obs_data_release(presetParam);
+
+//        //obs_load_sources的逻辑：
+//        //1、加载所有source
+//        //2、加载后obs_add_source，然后释放
+//        //3、调用source的load方法，实际上是把scene和source关联起来，用scene_add
+//        //4、scene_add调用之后释放source
+//        //仅供参考，这边也用类似的方法添加
+//        obs_add_source(newSource);
+//        obs_source_set_enabled(newSource, false);
+//        obs_sceneitem_t *newSceneItem = obs_scene_add(scene, newSource);
+//        obs_sceneitem_set_visible(newSceneItem, false);
+
+//        BiLiPropertyDialogFactory* dlgFactory = GetBiLiPropertyDialogFactory(strSourceId.toStdString().c_str());
+//        assert(dlgFactory);
+//        BiLiPropertyDlg *pDlg = dlgFactory->Create(name, newSceneItem, true, this);
+//        pDlg->setAttribute(Qt::WA_DeleteOnClose);
+
+//        //添加引用然后送到线程里
+//        obs_source_addref(newSource);
+//        obs_sceneitem_addref(newSceneItem);
+
+//        //对话框关闭时候运行的
+//        OnPropDlgFinishedType onDlgFinished;
+//        onDlgFinished.newSource = newSource;
+//        onDlgFinished.newSceneItem = newSceneItem;
+//        onDlgFinished.sceneSource = sceneSource;
+//        onDlgFinished.strSourceId = strSourceId.toStdString();
+//        onDlgFinished.This = this;
+
+//        QObject::connect(pDlg, &QDialog::finished, onDlgFinished);
+
+        //        pDlg->open();
+}
+
+void OBSBasic::OnWinAndMonitorSourceButtonClicked()
+{
+
+    QPoint ps;
+        if (monitorAndWinMenu_->sizeHint() != monitorAndWinMenu_->size())
+            monitorAndWinMenu_->resize(monitorAndWinMenu_->sizeHint());
+
+        ps.setY(ui->previewDisabledWidget->geometry().bottom() - monitorAndWinMenu_->size().height());
+        ps.setX((ui->SrcWinAndMonitorBtn->geometry().left() + ui->SrcWinAndMonitorBtn->geometry().right()) / 2
+            - monitorAndWinMenu_->size().width() / 2);
+
+        ps = mapToGlobal(ps);
+
+        int x = ps.rx();
+        int y = ps.ry();
+        monitorAndWinMenu_->exec(QCursor::pos( ));
+        //monitorAndWinMenu_->move(ps);
+
 }
 
 void OBSBasic::VolControlContextMenu()

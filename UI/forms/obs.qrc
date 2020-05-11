@@ -1,47 +1,69 @@
 <RCC>
-  <qresource prefix="/res">
-    <file>images/save.svg</file>
-    <file>images/media-pause.svg</file>
-    <file>images/mute.svg</file>
-    <file>images/refresh.svg</file>
-    <file>images/no_sources.svg</file>
-    <file>images/minus.svg</file>
-    <file>images/plus.svg</file>
-    <file>images/down.svg</file>
-    <file>images/up.svg</file>
-    <file>images/obs.png</file>
-    <file>images/obs_paused.png</file>
-    <file>images/tray_active.png</file>
-    <file>images/expand.svg</file>
-    <file>images/unlocked.svg</file>
-    <file>images/locked.svg</file>
-    <file>images/invisible.svg</file>
-    <file>images/visible.svg</file>
-    <file>images/help.svg</file>
-    <file>images/help_light.svg</file>
-    <file>images/trash.svg</file>
-    <file>images/revert.svg</file>
-    <file>images/sources/brush.svg</file>
-    <file>images/sources/camera.svg</file>
-    <file>images/sources/gamepad.svg</file>
-    <file>images/sources/globe.svg</file>
-    <file>images/sources/group.svg</file>
-    <file>images/sources/image.svg</file>
-    <file>images/sources/media.svg</file>
-    <file>images/sources/microphone.svg</file>
-    <file>images/sources/scene.svg</file>
-    <file>images/sources/slideshow.svg</file>
-    <file>images/sources/text.svg</file>
-    <file>images/sources/window.svg</file>
-    <file>images/sources/default.svg</file>
-  </qresource>
-  <qresource prefix="/settings">
-    <file>images/settings/output.svg</file>
-    <file>images/settings/stream.svg</file>
-    <file>images/settings/advanced.svg</file>
-    <file>images/settings/video.svg</file>
-    <file>images/settings/audio.svg</file>
-    <file>images/settings/general.svg</file>
-    <file>images/settings/hotkeys.svg</file>
-  </qresource>
+    <qresource prefix="/res">
+        <file>images/save.svg</file>
+        <file>images/media-pause.svg</file>
+        <file>images/mute.svg</file>
+        <file>images/refresh.svg</file>
+        <file>images/no_sources.svg</file>
+        <file>images/minus.svg</file>
+        <file>images/plus.svg</file>
+        <file>images/down.svg</file>
+        <file>images/up.svg</file>
+        <file>images/obs.png</file>
+        <file>images/obs_paused.png</file>
+        <file>images/tray_active.png</file>
+        <file>images/expand.svg</file>
+        <file>images/unlocked.svg</file>
+        <file>images/locked.svg</file>
+        <file>images/invisible.svg</file>
+        <file>images/visible.svg</file>
+        <file>images/help.svg</file>
+        <file>images/help_light.svg</file>
+        <file>images/trash.svg</file>
+        <file>images/revert.svg</file>
+        <file>images/sources/brush.svg</file>
+        <file>images/sources/camera.svg</file>
+        <file>images/sources/gamepad.svg</file>
+        <file>images/sources/globe.svg</file>
+        <file>images/sources/group.svg</file>
+        <file>images/sources/image.svg</file>
+        <file>images/sources/media.svg</file>
+        <file>images/sources/microphone.svg</file>
+        <file>images/sources/scene.svg</file>
+        <file>images/sources/slideshow.svg</file>
+        <file>images/sources/text.svg</file>
+        <file>images/sources/window.svg</file>
+        <file>images/sources/default.svg</file>
+        <file alias="SettingCfg">images/FucBtn/config.png</file>
+        <file alias="SettingCfgHS">images/FucBtn/configOver.png</file>
+        <file alias="SrcMonitorWindow">images/FucBtn/monitor_window.png</file>
+        <file alias="SrcMonitorWindowHS">images/FucBtn/monitor_windowOver.png</file>
+        <file>images/FucBtn/source_hide.png</file>
+        <file>images/FucBtn/source_show.png</file>
+        <file alias="SrcCam">images/FucBtn/sourceCamera.png</file>
+        <file alias="SrcCamHS">images/FucBtn/sourceCameraOver.png</file>
+        <file alias="SrcGame">images/FucBtn/sourceGame.png</file>
+        <file alias="SrcGameHS">images/FucBtn/sourceGameOver.png</file>
+        <file>images/FucBtn/sourceMonitor.png</file>
+        <file>images/FucBtn/sourceMonitorOver.png</file>
+        <file alias="SrcPic">images/FucBtn/sourcePicture.png</file>
+        <file alias="SrcPicHS">images/FucBtn/sourcePictureOver.png</file>
+        <file alias="SrcTxt">images/FucBtn/sourceText.png</file>
+        <file alias="SrcTxtHS">images/FucBtn/sourceTextOver.png</file>
+        <file alias="SrcVideo">images/FucBtn/sourceVideo.png</file>
+        <file alias="SrcVideoHS">images/FucBtn/sourceVideoOver.png</file>
+        <file alias="Valume">images/FucBtn/volume.png</file>
+        <file alias="ValumeHS">images/FucBtn/volumeOver.png</file>
+        <file alias="DanmakuHS">images/FucBtn/danmakuOver.png</file>
+        <file alias="Danmaku">images/FucBtn/danmaku.png</file>
+    </qresource>
+    <qresource prefix="/settings">
+        <file>images/settings/output.svg</file>
+        <file>images/settings/stream.svg</file>
+        <file>images/settings/advanced.svg</file>
+        <file>images/settings/video.svg</file>
+        <file>images/settings/audio.svg</file>
+        <file>images/settings/general.svg</file>
+        <file>images/settings/hotkeys.svg</file>
+    </qresource>
 </RCC>
