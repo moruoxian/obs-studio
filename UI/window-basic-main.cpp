@@ -1960,11 +1960,15 @@ void OBSBasic::OBSInit()
 
 //    };
 
-     QObject::connect(ui->SrcWinAndMonitorBtn, &QPushButton::clicked, this,&OBSBasic::OnWinAndMonitorSourceButtonClicked);
-     QObject::connect(ui->ValumeSettingBtn, &QPushButton::clicked, /*this,*/ /*SLOT(mSltValumeSettingBtn())*/[this](){
-      ui->mixerDock->setVisible( !ui->mixerDock->isVisible());
-     }            );
-     QObject::connect(ui->SettingBtn,SIGNAL(clicked()),ui->settingsButton,SIGNAL(clicked()));
+    QObject::connect(ui->SrcWinAndMonitorBtn, &QPushButton::clicked, this,&OBSBasic::OnWinAndMonitorSourceButtonClicked);
+    QObject::connect(ui->ValumeSettingBtn, &QPushButton::clicked, /*this,*/ /*SLOT(mSltValumeSettingBtn())*/[this](){
+        ui->mixerDock->setVisible( !ui->mixerDock->isVisible());
+    }            );
+    QObject::connect(ui->SettingBtn,SIGNAL(clicked()),ui->settingsButton,SIGNAL(clicked()));
+
+    QObject::connect(ui->StartRecordBtn,SIGNAL(clicked()),ui->recordButton,SIGNAL(clicked()));
+    QObject::connect(ui->StartBroadcastBtn,SIGNAL(clicked()),ui->streamButton,SIGNAL(clicked()));
+    // QObject::connect(ui->SettingBtn,SIGNAL(clicked()),ui->settingsButton,SIGNAL(clicked()));
     //end
 }
 
