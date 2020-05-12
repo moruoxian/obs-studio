@@ -1408,6 +1408,11 @@ QSlider::handle:horizontal[themeID="tBarSlider"] {
 
 /*///////////////// biliButtonqss begin /////////////*/
 QPushButton#SrcCamBtn{
+	border:none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:transparent;
     border-style: outset;
 	image: url(:/res/images/FucBtn/sourceCamera.png);
 }
@@ -1416,6 +1421,11 @@ QPushButton#SrcCamBtn:hover{
 }
 
 QPushButton#SrcGameBtn{
+	border:none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:transparent;
     border-style: outset;
 	image: url(:/res/images/FucBtn/sourceGame.png);
 }
@@ -1423,6 +1433,11 @@ QPushButton#SrcGameBtn:hover{
 	image: url(:/res/images/FucBtn/sourceGameOver.png);
 }
 QPushButton#SrcWinAndMonitorBtn{
+	border:none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:transparent;
     border-style: outset;
 	image: url(:/res/images/FucBtn/monitor_window.png);
 }
@@ -1430,6 +1445,11 @@ QPushButton#SrcWinAndMonitorBtn:hover{
 	image: url(:/res/images/FucBtn/monitor_windowOver.png);
 }
 QPushButton#SrcVideoBtn{
+	border:none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:transparent;
     border-style: outset;
 	image: url(:/res/images/FucBtn/sourceVideo.png);
 }
@@ -1437,6 +1457,11 @@ QPushButton#SrcVideoBtn:hover{
 	image: url(:/res/images/FucBtn/sourceVideoOver.png);
 }
 QPushButton#SrcTxtBtn{
+	border:none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:transparent;
     border-style: outset;
 	image: url(:/res/images/FucBtn/sourceText.png);
 }
@@ -1444,6 +1469,11 @@ QPushButton#SrcTxtBtn:hover{
 	image: url(:/res/images/FucBtn/sourceTextOver.png);
 }
 QPushButton#SrcPicBtn{
+	border:none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:transparent;
     border-style: outset;
 	image: url(:/res/images/FucBtn/sourcePicture.png);
 }
@@ -1451,6 +1481,11 @@ QPushButton#SrcPicBtn:hover{
 	image: url(:/res/images/FucBtn/sourcePictureOver.png);
 }
 QPushButton#DanmakuBtn{
+	border:none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:transparent;
     border-style: outset;
 	image: url(:/res/images/FucBtn/danmaku.png);
 }
@@ -1459,6 +1494,11 @@ QPushButton#DanmakuBtn:hover{
 }
 
 QPushButton#ValumeSettingBtn{
+	border:none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:transparent;
     border-style: outset;
 	image: url(:/res/images/FucBtn/volume.png);
 }
@@ -1466,6 +1506,11 @@ QPushButton#ValumeSettingBtn:hover{
 	image: url(:/res/images/FucBtn/volumeOver.png);
 }
 QPushButton#SettingBtn{
+	border:none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:transparent;
     border-style: outset;
 	
 	image: url(:/res/images/FucBtn/config.png);
