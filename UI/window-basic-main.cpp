@@ -1963,6 +1963,10 @@ void OBSBasic::OBSInit()
     QObject::connect(ui->SrcWinAndMonitorBtn, &QPushButton::clicked, this,&OBSBasic::OnWinAndMonitorSourceButtonClicked);
     QObject::connect(ui->ValumeSettingBtn, &QPushButton::clicked, /*this,*/ /*SLOT(mSltValumeSettingBtn())*/[this](){
         ui->mixerDock->setVisible( !ui->mixerDock->isVisible());
+        if(!ui->mixerDock->isVisible())
+        {
+             addDockWidget(Qt::RightDockWidgetArea,ui->mixerDock);
+        }
     }            );
     QObject::connect(ui->SettingBtn,SIGNAL(clicked()),ui->settingsButton,SIGNAL(clicked()));
 
