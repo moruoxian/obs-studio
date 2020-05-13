@@ -1924,9 +1924,12 @@
                <number>12</number>
               </property>
               <item>
-               <widget class="QPushButton" name="StartRecordBtn">
+               <widget class="RecordButton" name="recordButton">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -1946,6 +1949,9 @@
                 <property name="text">
                  <string>Basic.Main.StartRecording</string>
                 </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item>
@@ -1958,16 +1964,19 @@
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>10</width>
+                  <width>13</width>
                   <height>20</height>
                  </size>
                 </property>
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="StartBroadcastBtn">
+               <widget class="QPushButton" name="streamButton">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -1986,6 +1995,9 @@
                 </property>
                 <property name="text">
                  <string>Basic.Main.StartStreaming</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -2919,25 +2931,6 @@
       <number>4</number>
      </property>
      <item>
-      <widget class="QPushButton" name="streamButton">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Basic.Main.StartStreaming</string>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
       <layout class="QHBoxLayout" name="recordingLayout">
        <property name="spacing">
         <number>2</number>
@@ -2954,31 +2947,6 @@
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item>
-        <widget class="RecordButton" name="recordButton">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>130</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Basic.Main.StartRecording</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
      <item>

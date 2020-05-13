@@ -1966,9 +1966,7 @@ void OBSBasic::OBSInit()
     }            );
     QObject::connect(ui->SettingBtn,SIGNAL(clicked()),ui->settingsButton,SIGNAL(clicked()));
 
-    QObject::connect(ui->StartRecordBtn,SIGNAL(clicked()),ui->recordButton,SIGNAL(clicked()));
-    QObject::connect(ui->StartBroadcastBtn,SIGNAL(clicked()),ui->streamButton,SIGNAL(clicked()));
-    // QObject::connect(ui->SettingBtn,SIGNAL(clicked()),ui->settingsButton,SIGNAL(clicked()));
+
     //end
 }
 
