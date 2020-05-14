@@ -437,6 +437,8 @@ OBSBasic::OBSBasic(QWidget *parent)
     ui->DelayInfoLab->setHidden(true);
     ui->DropFramesLab->setHidden(true);
     ui->KBPSLab->setHidden(true);
+    ui->DanmakuBtn->setHidden(true);
+    ui->DanmakuLab->setHidden(true);
 
     // add at 20200509 add new biliuibutton group
 
@@ -1763,7 +1765,8 @@ void OBSBasic::OBSInit()
 		disableSaving++;
 	}
 
-	TimedCheckForUpdates();
+    //add by wangjun4 20200514 暂时屏蔽更新
+    //TimedCheckForUpdates();
 	loaded = true;
 
 	previewEnabled = config_get_bool(App()->GlobalConfig(), "BasicWindow",
@@ -1955,18 +1958,29 @@ void OBSBasic::OBSInit()
 
     //add by wangjun4 20200509
 
-//    auto OnWinAndMonitorSourceButtonClicked = [this]() {
+    auto onHideALLDockWidgets = [](QList<QDockWidget *> docks) {
 
+        Q_FOREACH(auto dock , docks)
+        {
+            if(dock)
+            dock->setVisible(false);
+        }
+    };
+    QList<QDockWidget *> docks{ui->scenesDock, ui->sourcesDock,
+                   ui->mixerDock, ui->transitionsDock,
+                   ui->controlsDock};
 
-//    };
+    onHideALLDockWidgets(docks);
 
+    //
     QObject::connect(ui->SrcWinAndMonitorBtn, &QPushButton::clicked, this,&OBSBasic::OnWinAndMonitorSourceButtonClicked);
     QObject::connect(ui->ValumeSettingBtn, &QPushButton::clicked, /*this,*/ /*SLOT(mSltValumeSettingBtn())*/[this](){
-        ui->mixerDock->setVisible( !ui->mixerDock->isVisible());
         if(!ui->mixerDock->isVisible())
         {
              addDockWidget(Qt::RightDockWidgetArea,ui->mixerDock);
         }
+        ui->mixerDock->setVisible( !ui->mixerDock->isVisible());
+
     }            );
     QObject::connect(ui->SettingBtn,SIGNAL(clicked()),ui->settingsButton,SIGNAL(clicked()));
 
@@ -3043,13 +3057,13 @@ void OBSBasic::mSltAddSourceButtonClicked()
             const char* sourceId;
             QString defaultName;
         } defaultNameTable[] = {
-            "av_capture_input", tr("Camera"),		//摄像头
-            "syphon-input", tr("Game"),			//游戏
-            "display_capture", tr("Monitor"),	//显示器
-            "window_capture", tr("Window"),		//窗口
-            "ffmpeg_source", tr("Media"),		//多媒体
-            "text_ft2_source", tr("Text"),		//文字
-            "image_source", tr("Picture"),		//图片
+           {"av_capture_input", tr("Camera") }  ,	//摄像头
+           {"syphon-input", tr("Game")       }  ,			//游戏
+           {"display_capture", tr("Monitor") }  ,	//显示器
+           {"window_capture", tr("Window")   }  ,		//窗口
+           {"ffmpeg_source", tr("Media")     }  ,		//多媒体
+           {"text_ft2_source", tr("Text")    }  ,		//文字
+           {"image_source", tr("Picture")    }  ,		//图片
         };
 
         //获取默认名
@@ -3173,8 +3187,8 @@ void OBSBasic::OnWinAndMonitorSourceButtonClicked()
 
         ps = mapToGlobal(ps);
 
-        int x = ps.rx();
-        int y = ps.ry();
+        //int x = ps.rx();
+        //int y = ps.ry();
         monitorAndWinMenu_->exec(QCursor::pos( ));
         //monitorAndWinMenu_->move(ps);
 
@@ -5381,7 +5395,8 @@ void OBSBasic::on_actionUploadLastCrashLog_triggered()
 
 void OBSBasic::on_actionCheckForUpdates_triggered()
 {
-	CheckForUpdates(true);
+    //屏蔽更新
+    //CheckForUpdates(true);
 }
 
 void OBSBasic::logUploadFinished(const QString &text, const QString &error)
