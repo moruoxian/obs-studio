@@ -1812,7 +1812,7 @@ static int run_program(fstream &logFile, int argc, char *argv[])
 #if __APPLE__
 	InstallNSApplicationSubclass();
 #endif
-
+    //启动程序入口（UI界面）
 	OBSApp program(argc, argv, profilerNameStore.get());
 	try {
 		bool created_log = false;

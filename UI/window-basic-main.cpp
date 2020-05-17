@@ -3176,7 +3176,7 @@ void OBSBasic::mSltAddSourceButtonClicked()
 
 void OBSBasic::OnWinAndMonitorSourceButtonClicked()
 {
-
+     //打开录屏选择二级菜单
     QPoint ps;
         if (monitorAndWinMenu_->sizeHint() != monitorAndWinMenu_->size())
             monitorAndWinMenu_->resize(monitorAndWinMenu_->sizeHint());
