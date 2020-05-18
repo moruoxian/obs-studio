@@ -20,6 +20,8 @@ MODULE_EXPORT const char *obs_module_description(void)
 
 extern struct obs_service_info rtmp_common_service;
 extern struct obs_service_info rtmp_custom_service;
+//add by wangjun4 20200518
+extern struct obs_service_info webrtc_stream_service; //增加这一行
 
 static update_info_t *update_info = NULL;
 static struct dstr module_name = {0};
@@ -100,6 +102,8 @@ bool obs_module_load(void)
 
 	obs_register_service(&rtmp_common_service);
 	obs_register_service(&rtmp_custom_service);
+    //add by wangjun4 20200518
+    obs_register_service(&webrtc_stream_service);
 	return true;
 }
 

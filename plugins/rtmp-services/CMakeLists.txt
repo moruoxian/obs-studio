@@ -11,6 +11,7 @@ set(rtmp-services_SOURCES
 	younow.c
 	rtmp-common.c
 	rtmp-custom.c
+	webrtc-stream.c
 	rtmp-services-main.c)
 
 set(rtmp-services_HEADERS
