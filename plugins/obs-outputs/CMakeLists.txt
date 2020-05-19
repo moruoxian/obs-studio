@@ -90,6 +90,9 @@ if(WIN32)
 		ws2_32
 		winmm
 		Iphlpapi)
+        #add by wangjun4202005128
+        add_definitions(-DWEBRTCSTREAM_EXPORTS)
+
 
 	if (WITH_RTMPS OR (WITH_RTMPS STREQUAL "AUTO"))
 		SET(obs-outputs_PLATFORM_DEPS
@@ -101,7 +104,8 @@ endif()
 if(MSVC)
 	set(obs-outputs_PLATFORM_DEPS
 		${obs-outputs_PLATFORM_DEPS}
-		w32-pthreads)
+                w32-pthreads
+                ../../../plugins/obs-outputs/webrtc-output/webrtc-output)
 endif()
 
 if(APPLE AND (WITH_RTMPS OR (WITH_RTMPS STREQUAL "AUTO")))
@@ -140,6 +144,18 @@ if(NOT WIN32)
 		COMPILE_FLAGS "-fvisibility=hidden")
 endif()
 
+
+#add win32 webrtc output header and lib
+if(MSVC)
+        set(obs-outputs_webrtc_HEADERS
+            webrtc-output/webrtc-output.h
+            )
+else()
+        set(obs-outputs_webrtc_HEADERS
+            )
+endif()
+#end
+
 set(obs-outputs_HEADERS
 	"${CMAKE_BINARY_DIR}/plugins/obs-outputs/config/obs-outputs-config.h"
 	obs-output-ver.h
@@ -162,7 +178,8 @@ add_library(obs-outputs MODULE
 	${obs-outputs_SOURCES}
 	${obs-outputs_HEADERS}
 	${obs-outputs_librtmp_SOURCES}
-	${obs-outputs_librtmp_HEADERS})
+        ${obs-outputs_librtmp_HEADERS}
+        ${obs-outputs_webrtc_HEADERS})
 target_link_libraries(obs-outputs
 	libobs
 	${LIBMBEDTLS_LIBRARIES}

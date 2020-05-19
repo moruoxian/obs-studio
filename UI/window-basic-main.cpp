@@ -446,9 +446,15 @@ OBSBasic::OBSBasic(QWidget *parent)
     mFuncBtnList << ui->SrcCamBtn << ui->SrcGameBtn << ui->SrcMonitorBtn
            << ui->SrcWinBtn << ui->SrcVideoBtn << ui->SrcTxtBtn << ui->SrcPicBtn;
 
+ #ifdef _WIN32 
+   ui->SrcCamBtn->setProperty("source_id", "dshow_input");
+    ui->SrcGameBtn->setProperty("source_id", "game_capture");
+    ui->SrcMonitorBtn->setProperty("source_id", "monitor_capture");
+ #else if
     ui->SrcCamBtn->setProperty("source_id", "av_capture_input");
     ui->SrcGameBtn->setProperty("source_id", "syphon-input");
     ui->SrcMonitorBtn->setProperty("source_id", "display_capture");
+#endif // _WIN32
     ui->SrcWinBtn->setProperty("source_id", "window_capture");
     ui->SrcVideoBtn->setProperty("source_id", "ffmpeg_source");
     ui->SrcTxtBtn->setProperty("source_id", "text_ft2_source");
@@ -3057,13 +3063,23 @@ void OBSBasic::mSltAddSourceButtonClicked()
             const char* sourceId;
             QString defaultName;
         } defaultNameTable[] = {
-           {"av_capture_input", tr("Camera") }  ,	//摄像头
-           {"syphon-input", tr("Game")       }  ,			//游戏
-           {"display_capture", tr("Monitor") }  ,	//显示器
+#ifdef _WIN32
+           {"dshow_input", tr("Camera") }  ,	//摄像头
+           {"game_capture", tr("Game")       }  ,			//游戏
+           {"monitor_capture", tr("Monitor") }  ,	//显示器
            {"window_capture", tr("Window")   }  ,		//窗口
            {"ffmpeg_source", tr("Media")     }  ,		//多媒体
            {"text_ft2_source", tr("Text")    }  ,		//文字
            {"image_source", tr("Picture")    }  ,		//图片
+#else if
+	{"av_capture_input", tr("Camera")}, //摄像头
+	{"syphon-input", tr("Game")},       //游戏
+	{"display_capture", tr("Monitor")}, //显示器mac
+	{"window_capture", tr("Window")}, //窗口
+	{"ffmpeg_source", tr("Media")},   //多媒体
+	{"text_ft2_source", tr("Text")},  //文字
+	{"image_source", tr("Picture")},  //图片
+#endif
         };
 
         //获取默认名
