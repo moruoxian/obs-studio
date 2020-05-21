@@ -23,6 +23,9 @@ struct BasicOutputHandler {
 	OBSSignal stopReplayBuffer;
 	OBSSignal startStreaming;
 	OBSSignal stopStreaming;
+    //add by wangjun4 20200521
+    OBSSignal readyStreaming;
+    //end
 	OBSSignal streamDelayStarting;
 	OBSSignal streamStopping;
 	OBSSignal recordStopping;

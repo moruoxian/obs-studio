@@ -1929,6 +1929,9 @@ EXPORT void obs_output_end_data_capture(obs_output_t *output);
  * @param  code    Error code (or OBS_OUTPUT_SUCCESS if not an error)
  */
 EXPORT void obs_output_signal_stop(obs_output_t *output, int code);
+//add by wangjun420200521
+EXPORT void obs_output_signal_ready(obs_output_t *output, const char* data);
+//end
 
 EXPORT uint64_t obs_output_get_pause_offset(obs_output_t *output);
 

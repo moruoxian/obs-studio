@@ -69,7 +69,19 @@ static void OBSStopStreaming(void *data, calldata_t *params)
 				  Q_ARG(int, code),
 				  Q_ARG(QString, arg_last_error));
 }
+//add by wangjun4 20200521
+static void OBSReadyStreaming(void *data, calldata_t *params)
+{
+       BasicOutputHandler *output = static_cast<BasicOutputHandler *>(data);
+       const char *url = calldata_string(params, "url");
+       QString arg_url = QString::fromUtf8(url);
 
+       QMetaObject::invokeMethod(output->main, "StreamingReady",
+                                 Q_ARG(QString, arg_url));
+}
+
+
+//end
 static void OBSStartRecording(void *data, calldata_t *params)
 {
 	BasicOutputHandler *output = static_cast<BasicOutputHandler *>(data);
@@ -708,6 +720,9 @@ bool SimpleOutput::StartStreaming(obs_service_t *service)
 		startStreaming.Disconnect();
 		stopStreaming.Disconnect();
 
+        //add by wangjun4 20200521
+        readyStreaming.Disconnect();
+        //end
 		streamOutput = obs_output_create(type, "simple_stream", nullptr,
 						 nullptr);
 		if (!streamOutput) {
@@ -732,7 +747,9 @@ bool SimpleOutput::StartStreaming(obs_service_t *service)
 		stopStreaming.Connect(
 			obs_output_get_signal_handler(streamOutput), "stop",
 			OBSStopStreaming, this);
-
+         readyStreaming.Connect(
+                 obs_output_get_signal_handler(streamOutput), "ready",
+                 OBSReadyStreaming, this);
 		bool isEncoded = obs_output_get_flags(streamOutput) &
 				 OBS_OUTPUT_ENCODED;
 

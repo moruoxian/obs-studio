@@ -82,6 +82,7 @@ static const char *output_signals[] = {
 	"void deactivate(ptr output)",
 	"void reconnect(ptr output)",
 	"void reconnect_success(ptr output)",
+    "void ready(ptr output, ptr data)", //add for webrtc callback by wangjun4 20200521
 	NULL,
 };
 
@@ -351,6 +352,21 @@ static void log_frame_info(struct obs_output *output)
 }
 
 static inline void signal_stop(struct obs_output *output);
+
+//begin  add by wangjun4 20200521
+static inline void signal_ready(struct obs_output *output,const char *data)
+{
+       struct calldata params;
+
+       calldata_init(&params);
+       calldata_set_string(&params, "url", data);
+       calldata_set_ptr(&params, "output", output);
+
+       signal_handler_signal(output->context.signals, "ready", &params);
+
+       calldata_free(&params);
+}
+//end
 
 void obs_output_actual_stop(obs_output_t *output, bool force, uint64_t ts)
 {
@@ -1950,6 +1966,14 @@ static inline void convert_flags(const struct obs_output *output,
 	*has_audio = (flags & OBS_OUTPUT_AUDIO) != 0;
 	*has_service = (flags & OBS_OUTPUT_SERVICE) != 0;
 }
+//add by wangjun420200521
+void obs_output_signal_ready(obs_output_t *output, const char *data)
+{
+       if (!obs_output_valid(output, "obs_output_signal_ready"))
+               return;
+       signal_ready(output,data);
+}
+//end
 
 bool obs_output_can_begin_data_capture(const obs_output_t *output,
 				       uint32_t flags)

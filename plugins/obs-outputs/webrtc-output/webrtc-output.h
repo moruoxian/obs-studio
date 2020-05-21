@@ -20,5 +20,5 @@
 #endif
 
 
-WEBRTCSTREAM_API  struct obs_output_info *CreateWebrtcOutput(void (*callback)(void*));
+WEBRTCSTREAM_API  struct obs_output_info *CreateWebrtcOutput(void (*callback)(const char*,obs_output_t *output));
 #endif // _WEBRTC_OUTPUT_H_

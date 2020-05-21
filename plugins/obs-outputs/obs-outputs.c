@@ -21,10 +21,16 @@ extern struct obs_output_info flv_output_info;
 #if COMPILE_FTL
 extern struct obs_output_info ftl_output_info;
 #endif
-//add by wangjun420200518
-void callback(void *data)
+void callback(const char *data,obs_output_t *output)
 {
-	char *response = (char *)data;
+       if (!data || !output) {
+               blog(LOG_INFO, "webrtc_stream streamingOuts failed");
+       }
+       if (output) {
+               blog(LOG_INFO, "response:%s\n", data);
+               obs_output_signal_ready(output, data);
+       }
+
 }
 //end
 bool obs_module_load(void)
@@ -44,7 +50,7 @@ bool obs_module_load(void)
     //add by wangjun4 20200518 test add webrtcstream output begin
 
 #ifdef _WIN32
-    //增加下面两句
+    //
         struct obs_output_info *webrtc_output_info =
             CreateWebrtcOutput(callback);
         obs_register_output(webrtc_output_info);

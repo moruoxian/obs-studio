@@ -542,6 +542,10 @@ public slots:
 
 	void StreamingStart();
 	void StreamStopping();
+    //add by wangjun4 20200521
+
+    void StreamingReady( QString url);
+    //end
 	void StreamingStop(int errorcode, QString last_error);
 
 	void StartRecording();

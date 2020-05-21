@@ -5751,6 +5751,11 @@ void OBSBasic::StreamingStart()
 	blog(LOG_INFO, STREAMING_START);
 }
 
+//add by wangjun4 20200521
+void OBSBasic::StreamingReady( QString url) {
+       blog(LOG_INFO, "StreamingReady url:%s",url.toStdString().c_str());
+}
+//end
 void OBSBasic::StreamStopping()
 {
 	ui->streamButton->setText(QTStr("Basic.Main.StoppingStreaming"));
