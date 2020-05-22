@@ -4526,3 +4526,10 @@ win_build/UI/obs_autogen/include_RelWithDebInfo/EWIEGA46WW/moc_window-projector.
 win_build/UI/obs_autogen/include_RelWithDebInfo/EWIEGA46WW/moc_window-remux.cpp
 win_build/UI/RelWithDebInfo/obs32.exp
 win_build/UI/RelWithDebInfo/obs32.lib
+win_build/Win32/RelWithDebInfo/ZERO_CHECK/ZERO_CHECK.vcxproj.FileListAbsolute.txt
+win_build/UI/obs.dir/RelWithDebInfo/obs.vcxproj.FileListAbsolute.txt
+win_build/UI/obs-frontend-api/obs-frontend-api.dir/RelWithDebInfo/obs-frontend-api.vcxproj.FileListAbsolute.txt
+win_build/libobs/libobs.dir/RelWithDebInfo/libobs.vcxproj.FileListAbsolute.txt
+win_build/deps/w32-pthreads/w32-pthreads.dir/RelWithDebInfo/w32-pthreads.vcxproj.FileListAbsolute.txt
+win_build/deps/jansson/jansson.dir/RelWithDebInfo/jansson.vcxproj.FileListAbsolute.txt
+win_build/deps/blake2/blake2.dir/RelWithDebInfo/blake2.vcxproj.FileListAbsolute.txt
