@@ -75,6 +75,9 @@
 
 #include <json11.hpp>
 //#include<BiLiOBSMainWid.h>
+
+#include<QLocalServer>
+#include<QLocalSocket>
 #include<QPoint>
 using namespace json11;
 using namespace std;
@@ -5754,6 +5757,21 @@ void OBSBasic::StreamingStart()
 //add by wangjun4 20200521
 void OBSBasic::StreamingReady( QString url) {
        blog(LOG_INFO, "StreamingReady url:%s",url.toStdString().c_str());
+       QLocalSocket localSocket(this);
+       localSocket.connectToServer("OBS_MESSAGE", QIODevice::WriteOnly);
+       if (!localSocket.waitForConnected(1000))
+       {
+           qDebug(localSocket.errorString().toLatin1());
+           return ;
+       }
+       localSocket.write(url.toUtf8());
+       if (!localSocket.waitForBytesWritten(1000))
+       {
+           qDebug(localSocket.errorString().toLatin1());
+           return ;
+       }
+       localSocket.disconnectFromServer();
+       return ;
 }
 //end
 void OBSBasic::StreamStopping()
